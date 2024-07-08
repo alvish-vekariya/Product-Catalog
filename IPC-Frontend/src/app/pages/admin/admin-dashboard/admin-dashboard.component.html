@@ -1,0 +1,48 @@
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col text-center">
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" #addButton>
+        Add Product
+      </button>
+    </div>
+  </div>
+  <app-show-products [allProducts]="allProducts" (deleteProduct)="deleteProduct($event)" (updateProduct)="updateProduct($event)"></app-show-products>
+</div>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" [hidden]="!updateState">Update Product</h5>
+        <h5 class="modal-title" id="exampleModalLabel" [hidden]="updateState">Add Product</h5>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="productForm">
+          <div class="form-floating">
+            <input type="text" name="" id="name" formControlName="name" placeholder="name" class="form-control">
+            <label for="name">Product Name</label>
+          </div>
+          <div class="form-floating mt-3">
+            <input type="number" min="0" name="" id="price" formControlName="price" placeholder="price" class="form-control">
+            <label for="price">Product price</label>
+          </div>
+          <div class="form-floating mt-3">
+            <textarea name="" id="description" class="form-control" placeholder="description" formControlName="description"></textarea>
+            <label for="description">Description</label>
+          </div>
+          <div class="form-floating mt-3">
+            <input type="file" name="" formControlName="file" accept="image/png, image/jpg, image/jpeg" id="image" class="form-control" placeholder="file" placeholder="file" (change)="selectFile($event)">
+            <label for="image">Product Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #closeButton (click)="resetThings()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="addProduct()" [hidden]="updateState">Add</button>
+        <button type="button" class="btn btn-warning" (click)="update()" [hidden]="!updateState">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

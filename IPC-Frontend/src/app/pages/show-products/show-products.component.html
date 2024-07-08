@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-3 mt-3" *ngFor="let item of allProducts">
+        <div class="card h-100">
+          <img class="card-img-top h-100 w-100" src="http://localhost:3000/{{item.image}}" alt="Card image">
+          <div class="card-body">
+            <h4 class="card-title">{{item.name}}</h4>
+            <h4 class="card-title">₹{{item.price}}</h4>
+            <p class="card-text">{{item.description}}</p>
+            <button type="button" class="btn btn-danger" (click)="delete(item._id)" [hidden]="role === 'user'">Delete</button>
+            <button type="button" class="btn btn-warning" (click)="update(item._id)" [hidden]="role === 'user'">Update</button>
+            <button type="button" class="btn btn-secondary" (click)="view(item._id)">View</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
