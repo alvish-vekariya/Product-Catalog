@@ -1,0 +1,5 @@
+{
+    "PORT" : 3000,
+    "MONGO_URL" : "mongodb+srv://alvish:mongo_practice@practice.05kpole.mongodb.net/Product_Catalog?retryWrites=true&w=majority&appName=practice",
+    "SECRETE_KEY" : "Interactive_Product_Catalog"
+}
