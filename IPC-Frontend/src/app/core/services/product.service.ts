@@ -14,24 +14,32 @@ export class ProductService {
     return this.http.post(`${this.url}/addProduct`, data);
   }
 
-  deleteProduct(id: string){
-    return this.http.delete(`${this.url}/deleteProduct?id=${id}`);
+  deleteProduct(id: string, image : string){
+    return this.http.delete(`${this.url}/deleteProduct?id=${id}&imagename=${image}`);
   }
 
-  editProduct(id: string, data : any){
-    return this.http.put(`${this.url}/updateProduct?id=${id}`, data)
+  editProduct(id: string, data : any, imagename: string){
+    return this.http.put(`${this.url}/updateProduct?id=${id}&imagename=${imagename}`, data)
   }
 
   getProduct(id: string){
     return this.http.get(`${this.url}/getProduct?id=${id}`);
   }
   
-  getAllProducts(){
-    return this.http.get(`${this.url}/getAllProduct`);
+  getAllProducts(queryParams : any){
+    return this.http.get(`${this.url}/getAllProduct`, {params : queryParams});
   }
 
   search(search: string){
     return this.http.get(`${this.url}/search?search=${search}`);
+  }
+
+  getCategory(category : string){
+    return this.http.get(`${this.url}/getCategory?category=${category}`);
+  }
+
+  getProductCount(){
+    return this.http.get(`${this.url}/getProductCount`);
   }
 
 }

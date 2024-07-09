@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { AgGridAngular } from 'ag-grid-angular'
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { AgGridAngular } from 'ag-grid-angular'
   ],
   imports: [
     CommonModule,
-    AgGridAngular
+    AgGridAngular,
+    RouterModule
   ],
   exports :[
     NavbarComponent,

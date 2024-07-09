@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { Ilogin } from 'src/app/core/interfaces/ilogin';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
@@ -10,7 +11,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  constructor(private formBuilder : FormBuilder, private authService: AuthenticationService, private router: Router){}
+  constructor(private formBuilder : FormBuilder, private authService: AuthenticationService, private router: Router, private toastService: ToastService){}
 
   loginForm = this.formBuilder.group({
     email : ['', [Validators.required, Validators.email]],
@@ -26,9 +27,10 @@ export class LoginComponent {
           token : data.token
         }
         localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate([`${data.role}`])
+        this.router.navigate([`${data.role}`]);
+        this.toastService.success(data.message);
       }else{
-        alert(data.message);
+        this.toastService.error(data.message);
       }
     })
   }

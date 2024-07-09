@@ -39,4 +39,9 @@ export class userService{
         await userModel.create(bodyData);
         return {status: true, message: 'user signuped!'};
     }
+
+    async getUserCount():Promise<object>{
+        const count = await userModel.countDocuments({role : 'user'});
+        return {status: true, data : count};
+    }
 }

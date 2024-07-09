@@ -1,4 +1,9 @@
 <nav class="navbar navbar-light bg-light px-5">
-    <a class="navbar-brand" href="#">Welcome, {{name}}</a>
-    <button type="button" class="btn btn-outline-danger" (click)="logout()">Logout</button>
-  </nav>
+  <h3 class="navbar-brand" href="#">Welcome, {{name}}</h3>
+  <ul class="navbar nav" *ngIf="role === 'admin'">
+    <li class="nav-item"><a routerLink="/{{role}}" class="nav-link">Home</a></li>
+    <li class="nav-item"><a routerLink="/{{role}}/category" class="nav-link">Category</a></li>
+    <li class="nav-item"> <a routerLink="/{{role}}/statistics" class="nav-link">Statistics</a></li>
+  </ul>
+  <button type="button" class="btn btn-outline-danger" (click)="logout()">Logout</button>
+</nav>

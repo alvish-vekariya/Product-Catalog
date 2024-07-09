@@ -5,6 +5,7 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AngularToastifyModule } from 'angular-toastify';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    AngularToastifyModule
   ]
 })
 export class AuthenticationModule { }

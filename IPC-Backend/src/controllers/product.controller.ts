@@ -15,7 +15,8 @@ export class productController{
             let bodyData: IproductModel = {
                 name : req.body.name,
                 description: req.body.description,
-                price : req.body.price
+                price : req.body.price,
+                category : req.body.category
             }
 
             if(req.file){
@@ -32,7 +33,8 @@ export class productController{
     @httpDelete('/deleteProduct')
     async deleteProduct(req: Request, res: Response){
         try{
-            res.json(await this.productServices.deleteProduct(req.query.id as string));
+            
+            res.json(await this.productServices.deleteProduct(req.query.id as string, req.query.imagename as string));
         }catch(err: any){
             res.json({status: false, message : err.message});
         }
@@ -43,7 +45,8 @@ export class productController{
             let bodyData: IproductModel = {
                 name : req.body.name,
                 description: req.body.description,
-                price : req.body.price
+                price : req.body.price,
+                category : req.body.catogory
             }
 
             if(req.file){
@@ -52,7 +55,7 @@ export class productController{
                     image : req.file.filename
                 }
             }
-            res.json(await this.productServices.updateProduct(req.query.id as string, bodyData))
+            res.json(await this.productServices.updateProduct(req.query.id as string, bodyData, req.query.imagename as string))
         }catch(err: any){
             res.json({status: false, message : err.message});
         }
@@ -68,19 +71,19 @@ export class productController{
     @httpGet('/getAllProduct')
     async getAllProduct(req: Request, res: Response){
         try{
-            res.json(await this.productServices.getAllProduct());
+            const queryParams = req.query;
+            res.json(await this.productServices.getAllProduct(queryParams));
         }catch(err: any){
             res.json({status: false, message : err.message});
         }
     }
 
-    @httpGet('/search')
-    async searchProducts(req: Request, res: Response){
+    @httpGet('/getProductCount')
+    async getProductCount(req:Request, res: Response){
         try{
-            res.json(await this.productServices.search(req.query.search as string));
+            res.json(await this.productServices.getProductCount());
         }catch(err:any){
-            res.json({status: false, message : err.message});
+            res.json({status: false, message: err.message});
         }
     }
-
 }

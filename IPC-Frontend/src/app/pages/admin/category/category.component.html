@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row my-5 ">
+        <div class="col text-center ">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" #addProduct>
+                Add Category
+            </button>
+        </div>
+    </div>
+</div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="!updateState">Add Category</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel" *ngIf="updateState">Update Category</h1>
+        </div>
+        <div class="modal-body">
+            <form action="" [formGroup]="categoryForm">
+                <div class="form-floating">
+                    <input type="text" name="" id="name" placeholder="name" formControlName="name" class="form-control">
+                    <label for="name">Category Name</label>
+                </div>
+                <div class="form-floating mt-3">
+                    <input type="text" name="" id="description" placeholder="description" formControlName="description" class="form-control">
+                    <label for="description">Category Desciption</label>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #closeButton (click)="resetThings()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addCategory()" *ngIf="!updateState">Add</button>
+          <button type="button" class="btn btn-warning" (click)="updateCategory()" *ngIf="updateState">update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<div class="row m-0 p-0">
+    <div class="col m-0 p-0">
+        <div class="container">
+            <app-datatable [rowData]="rowData" [colDefs]="colDefs"></app-datatable>
+        </div>
+    </div>
+</div>

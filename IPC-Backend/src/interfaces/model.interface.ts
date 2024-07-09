@@ -17,5 +17,14 @@ export interface IproductModel{
     image ?: string,
     _id?: mongoose.Schema.Types.ObjectId,
     createdAt ?: Date,
+    category : mongoose.Types.ObjectId,
     updatedAt ?: Date
+}
+
+export interface IcategoryModel {
+    _id ?: mongoose.Types.ObjectId,
+    name : string | undefined,
+    description : string,
+    createdAt?: Date,
+    updatedAt?: Date
 }

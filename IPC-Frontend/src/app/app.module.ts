@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { HeadersInterceptor } from './core/interceptor/headers.interceptor';
 import { LayoutModule } from './layout/layout.module';
+import { AngularToastifyModule, ToastService } from 'angular-toastify';
 
 @NgModule({
   declarations: [
@@ -15,14 +16,16 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    LayoutModule
+    LayoutModule,
+    AngularToastifyModule
   ],
   providers: [
     {
       provide : HTTP_INTERCEPTORS,
       useClass : HeadersInterceptor,
       multi : true
-    }
+    },
+    ToastService
   ],
   bootstrap: [AppComponent]
 })

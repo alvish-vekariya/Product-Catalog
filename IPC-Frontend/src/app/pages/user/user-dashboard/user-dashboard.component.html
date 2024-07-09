@@ -8,6 +8,12 @@
                 <input type="text" class="form-control" placeholder="search" aria-label="Username" aria-describedby="basic-addon1" (change)="search($event)">
               </div>
         </div>
+        <div class="col-auto">
+            <select name="" id="category" class="form-select" formControlName="category" (change)="changeCategory($event)">
+                <option value="" [defaultSelected]="true">All</option>
+                <option value="{{item._id}}" *ngFor="let item of allCategories">{{item.name | titlecase}}</option>
+            </select>
+        </div>
     </div>
     
     <div class="row">

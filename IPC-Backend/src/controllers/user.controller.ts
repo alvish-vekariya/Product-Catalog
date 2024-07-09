@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { inject } from 'inversify';
-import { controller, httpPost } from 'inversify-express-utils';
+import { controller, httpGet, httpPost } from 'inversify-express-utils';
 import { userService } from '../services';
 import { Request, Response } from 'express';
 import { IuserModel } from '../interfaces/model.interface';
@@ -37,6 +37,15 @@ export class userController {
             res.json(await this.userServices.logout(id));
         }catch(err: any){
             res.json({status : false, message : err.message})
+        }
+    }
+
+    @httpGet('/getUserCount', loginMiddleware)
+    async getUserCount(req: Request, res: Response){
+        try{
+            res.json(await this.userServices.getUserCount());
+        }catch(err: any){
+            res.json({status : false, message : err.message});
         }
     }
 }

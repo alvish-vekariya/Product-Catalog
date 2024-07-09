@@ -6,11 +6,17 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { SharedModule } from 'src/app/shared/shared.module';
 import { PagesModule } from '../pages.module';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CategoryComponent } from './category/category.component';
+import { DatatableActionsComponent } from './category/datatable-actions/datatable-actions.component';
+import { StatisticsComponent } from './statistics/statistics.component';
 
 
 @NgModule({
   declarations: [
-    AdminDashboardComponent
+    AdminDashboardComponent,
+    CategoryComponent,
+    DatatableActionsComponent,
+    StatisticsComponent
   ],
   imports: [
     CommonModule,

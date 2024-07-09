@@ -17,6 +17,11 @@ const productSchema = new mongoose.Schema<IproductModel>({
     image : {
         type : String,
         required : [true, 'product image is required!!']
+    },
+    category : {
+        type : mongoose.Schema.Types.ObjectId,
+        required : [true, 'category is required'],
+        ref: 'categories'
     }
 },{
     timestamps: true
