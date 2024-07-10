@@ -44,4 +44,9 @@ export class userService{
         const count = await userModel.countDocuments({role : 'user'});
         return {status: true, data : count};
     }
+
+    async getAllUsers():Promise<object>{
+        const data = await userModel.find({role: 'user'});
+        return {status: true, data: data};
+    }
 }

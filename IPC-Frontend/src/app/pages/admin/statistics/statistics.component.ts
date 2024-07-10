@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AdminService } from 'src/app/core/services/admin.service';
 import { CategoryService } from 'src/app/core/services/category.service';
 import { ProductService } from 'src/app/core/services/product.service';
+import {ColDef} from 'ag-grid-community';
 
 @Component({
   selector: 'app-statistics',
@@ -14,6 +15,13 @@ export class StatisticsComponent {
   usersCount !: number;
   productsCount !: number;
   categoryCount !: number;
+  rowData: any = [];
+
+  colDefs: ColDef[] =[
+    {field : 'username', flex: 1},
+    {field: 'email', flex: 1},
+    {field : 'createdAt', flex: 1, headerName:"Registered At"}
+  ]
 
 
   ngOnInit(){
@@ -27,5 +35,12 @@ export class StatisticsComponent {
       this.categoryCount = data.data;
     })
   }
+
+  showUser(){
+    this.adminService.getAllUser().subscribe((data: any)=>{
+      this.rowData = data.data;
+    })
+  }
+
 
 }

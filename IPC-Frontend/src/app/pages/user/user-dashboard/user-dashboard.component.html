@@ -1,12 +1,12 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center mt-4">
         <div class="col-auto text-center">
-            <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="basic-addon1">@</span>
+            <div class="input-group border rounded-3">
+                <div class="input-group-prepend d-flex align-items-center">
+                  <span class="input-group-text border-0" id="basic-addon1" style="background-color: white;"><i class="fa-solid fa-magnifying-glass"></i></span>
                 </div>
-                <input type="text" class="form-control" placeholder="search" aria-label="Username" aria-describedby="basic-addon1" (change)="search($event)">
-              </div>
+                <input type="text" class="form-control border-0 shadow-none" placeholder="search" aria-label="Username" aria-describedby="basic-addon1" (change)="search($event)">
+            </div>
         </div>
         <div class="col-auto">
             <select name="" id="category" class="form-select" formControlName="category" (change)="changeCategory($event)">

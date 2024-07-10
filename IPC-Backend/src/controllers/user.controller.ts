@@ -48,4 +48,13 @@ export class userController {
             res.json({status : false, message : err.message});
         }
     }
+    
+    @httpGet('/getAllUsers', loginMiddleware)
+    async getAllUsers(req: Request, res: Response){
+        try{
+            res.json(await this.userServices.getAllUsers());
+        }catch(err: any){
+            res.json({status : false, message : err.message});
+        }
+    }
 }

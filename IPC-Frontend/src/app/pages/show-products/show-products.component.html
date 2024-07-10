@@ -1,9 +1,9 @@
-<div class="container">
+<div class="container mb-5">
     <div class="row mt-4">
       <div class="col-lg-3 mt-3" *ngFor="let item of allProducts">
         <div class="card h-100">
           <div class="w-100 h-100 d-flex align-items-center" style="background-color: white;">
-            <img class="card-img-top" src="http://localhost:3000/{{item.image}}" alt="Card image">
+            <img class="card-img-top img-fluid" src="http://localhost:3000/{{item.image}}" alt="Card image">
           </div>
           <div class="card-body">
             <h4 class="card-title">{{item.name | titlecase}}</h4>

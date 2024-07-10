@@ -22,14 +22,18 @@ export class SignupComponent {
   })
 
   signup(){
-    this.authService.signup(this.signupForm.value as Isignup).subscribe((data : any)=>{
-      if(data.status == true){
-        this.router.navigate(['/auth']);
-        this.ts.success(data.message);
-      }else{
-        this.ts.error(data.message);
-      }
-    })
+    if(this.signupForm.invalid){
+      this.signupForm.markAllAsTouched();
+    }else{
+      this.authService.signup(this.signupForm.value as Isignup).subscribe((data : any)=>{
+        if(data.status == true){
+          this.router.navigate(['/auth']);
+          this.ts.success(data.message);
+        }else{
+          this.ts.error(data.message);
+        }
+      })
+    }
   }
 
 }

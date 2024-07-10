@@ -19,19 +19,23 @@ export class LoginComponent {
   })
 
   login(){
-    this.authService.login(this.loginForm.value as Ilogin).subscribe((data: any)=>{
-      if(data.status === true){
-        const user = {
-          role : data.role,
-          username : data.username,
-          token : data.token
+    if(this.loginForm.invalid){
+      this.loginForm.markAllAsTouched();
+    }else{
+      this.authService.login(this.loginForm.value as Ilogin).subscribe((data: any)=>{
+        if(data.status === true){
+          const user = {
+            role : data.role,
+            username : data.username,
+            token : data.token
+          }
+          localStorage.setItem('user', JSON.stringify(user));
+          this.router.navigate([`${data.role}`]);
+          this.toastService.success(data.message);
+        }else{
+          this.toastService.error(data.message);
         }
-        localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate([`${data.role}`]);
-        this.toastService.success(data.message);
-      }else{
-        this.toastService.error(data.message);
-      }
-    })
+      })
+    }
   }
 }

@@ -1,6 +1,8 @@
 import { injectable } from "inversify";
 import { categoryModel, productModel } from "../models";
 import mongoose from "mongoose";
+import fs from 'fs';
+import path from 'path'
 
 @injectable()
 export class categoryService{
@@ -12,6 +14,29 @@ export class categoryService{
     
     async deleteCategory(id: string):Promise<object>{
         await categoryModel.findOneAndDelete({_id: id});
+        const images = await productModel.aggregate([
+            {
+              $match: {
+                category : new mongoose.Types.ObjectId(id)
+              }
+            },
+            {
+              $group: {
+                _id: '$category',
+                images : {$push : '$image'}
+              }
+            },
+            {
+                $project : {
+                    _id:0,
+                    images : 1
+                }
+            }
+          ])
+          images[0].images.forEach((e: string) => {
+            fs.unlink(path.join(__dirname, '..', '..', 'public', 'uploads', e), (e)=>{});
+          });
+          
         await productModel.deleteMany({category : new mongoose.Types.ObjectId(id)});
         return {status: true, message : "category deleted!"}
     }

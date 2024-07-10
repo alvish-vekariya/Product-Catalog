@@ -13,4 +13,8 @@ export class AdminService {
   getCount(){
     return this.http.get(`${this.url}/getUserCount`);
   }
+
+  getAllUser(){
+    return this.http.get(`${this.url}/getAllUsers`);
+  }
 }

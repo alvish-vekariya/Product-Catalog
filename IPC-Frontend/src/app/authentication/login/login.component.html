@@ -6,18 +6,18 @@
                     <h2 class="text-center">Login</h2>
                     <form action="" [formGroup]="loginForm" (submit)="login()">
                         <div class="form-floating mt-3">
-                            <input type="email" name="" id="email" class="form-control" placeholder="Email" formControlName="email">
+                            <input type="email" name="" id="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{'is-invalid':loginForm.controls.email.invalid && loginForm.controls.email.touched, 'is-valid': loginForm.controls.email.valid}">
                             <label for="email">Email</label>
                         </div>
                         <div class="form-floating mt-3">
-                            <input type="password" name="" id="password" class="form-control" placeholder="password" formControlName="password">
+                            <input type="password" name="" id="password" class="form-control" placeholder="password" formControlName="password" [ngClass]="{'is-invalid':loginForm.controls.password.invalid && loginForm.controls.password.touched, 'is-valid': loginForm.controls.password.valid}">
                             <label for="password">Password</label>
                         </div>
                         <div class="mt-3">
                             <p>Don't have an account? <a routerLink="signup">Signup</a></p>
                         </div>
                         <div class="text-center">
-                            <input type="submit" value="Login" class="btn btn-primary" [disabled]="this.loginForm.invalid">
+                            <input type="submit" value="Login" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
