@@ -6,12 +6,16 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AngularToastifyModule } from 'angular-toastify';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AuthLayoutComponent } from './auth-layout/auth-layout.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ForgotPasswordComponent,
+    AuthLayoutComponent
   ],
   imports: [
     CommonModule,

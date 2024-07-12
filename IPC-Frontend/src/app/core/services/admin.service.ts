@@ -8,13 +8,15 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  private url = 'http://localhost:3000/user';
-
   getCount(){
-    return this.http.get(`${this.url}/getUserCount`);
+    return this.http.get(`/user/getUserCount`);
   }
 
   getAllUser(){
-    return this.http.get(`${this.url}/getAllUsers`);
+    return this.http.get(`/user/getAllUsers`);
+  }
+
+  deleteUser(id: string){
+    return this.http.delete(`/user/deleteUser?id=${id}`);
   }
 }

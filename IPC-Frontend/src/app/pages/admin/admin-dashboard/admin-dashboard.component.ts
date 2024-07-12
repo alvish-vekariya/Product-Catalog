@@ -75,10 +75,15 @@ export class AdminDashboardComponent {
     formData.append('file', this.selectedFile);
 
     this.prodService.addProduct(formData).subscribe((data: any)=>{
-      this.ts.success(data.message);
+      if(data.status === true){
+        this.ts.success(data.message);
       this.setProducts();
       this.closeButton.nativeElement.click();
       this.resetThings();
+      }else{
+        this.ts.error(data.message);
+
+      }
     })
   }
 
@@ -123,11 +128,16 @@ export class AdminDashboardComponent {
       formData.append('file', this.selectedFile);
     }
     this.prodService.editProduct(this.updateProductId, formData, this.imagename).subscribe((data: any)=>{
-      this.ts.warn(data.message)
-      this.setProducts();
-      this.closeButton.nativeElement.click()
-      this.resetThings();
-      this.setForm()
+      if(data.status === true){
+        this.ts.warn(data.message)
+        this.setProducts();
+        this.closeButton.nativeElement.click()
+        this.resetThings();
+        this.setForm()
+      }else{
+        this.ts.error(data.message)
+
+      }
     })
   }
 

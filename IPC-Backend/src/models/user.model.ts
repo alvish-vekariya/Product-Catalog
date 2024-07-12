@@ -21,6 +21,12 @@ const userSchema = new mongoose.Schema<IuserModel>({
         type: String,
         required : [true, 'role is required!!'],
         enum : ['admin', 'user']
+    },
+    profile : {
+        type : String
+    },
+    otp : {
+        type: Number
     }
 },{
     timestamps : true

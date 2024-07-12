@@ -1,9 +1,74 @@
-<nav class="navbar navbar-light bg-light px-5">
-  <h3 class="navbar-brand" href="#">Welcome, {{name}}</h3>
-  <ul class="navbar nav" *ngIf="role === 'admin'">
-    <li class="nav-item"><a routerLink="/{{role}}" class="nav-link">Home</a></li>
-    <li class="nav-item"><a routerLink="/{{role}}/category" class="nav-link">Category</a></li>
-    <li class="nav-item"> <a routerLink="/{{role}}/statistics" class="nav-link">Statistics</a></li>
-  </ul>
-  <button type="button" class="btn btn-outline-danger" (click)="logout()">Logout</button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <h3 class="navbar-brand" href="#">Welcome, {{this.user?.username}}</h3>
+    <button class="btn border-0 shadow-none ms-auto order-lg-last" data-bs-toggle="modal" data-bs-target="#profile"><img src="{{imageUrl}}" alt="" style="width: 2.5rem; height: 2.5rem;" class="rounded-circle me-2" (click)="patchValue()"></button>
+    <button type="button" class="btn btn-outline-danger order-lg-last logout" (click)="logout()">Logout</button>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav text-center m-auto">
+        <li class="nav-item"><a routerLink="/{{this.user?.role}}" class="nav-link" *ngIf="this.user?.role=== 'admin'">Home</a></li>
+        <li class="nav-item"><a routerLink="/{{this.user?.role}}/category" class="nav-link" *ngIf="this.user?.role=== 'admin'">Category</a></li>
+        <li class="nav-item"> <a routerLink="/{{this.user?.role}}/statistics" class="nav-link" *ngIf="this.user?.role=== 'admin'">Statistics</a></li>
+        <button type="button" class="btn shadow-none border-0 order-lg-last logoutLink" (click)="logout()">Logout</button>
+      </ul>
+    </div>
+  </div>
 </nav>
+
+
+<!-- Modal -->
+<div class="modal fade" id="profile" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Update Profile</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="resetAllThings()"></button>
+      </div>
+      <div class="modal-body">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+          <img src="{{tempImageUrl}}" #profilePhoto alt="" class="img-fluid rounded-circle profilePic"
+            style="width: 10rem; height: 10rem;">
+          <button type="button" (click)="changeImage()" class="btn image-add shadow-none border-0"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <input type="file" name="" id="" (change)="selectProfile($event)" style="display: none;" #fileInput>
+        <form action="" [formGroup]="profileForm">
+          <div class="form-floating mt-3">
+            <input type="text" name="" id="username" formControlName="username" class="form-control"
+              placeholder="Username" [ngClass]="{'is-invalid': this.profileForm.controls.username.invalid && (this.profileForm.controls.username.touched || this.profileForm.controls.username.dirty), 'is-valid' : this.profileForm.controls.username.valid}">
+            <label for="username">Username</label>
+            <span class="invalid-feedback" *ngIf="this.profileForm.controls.username.errors?.['required']">Username is required!</span>
+            <span class="invalid-feedback" *ngIf="this.profileForm.controls.username.errors?.['pattern']">Username should only alpha-numerical!</span>
+          </div>
+          <div class="form-floating mt-3">
+            <input type="email" name="" id="email" formControlName="email" class="form-control" placeholder="email">
+            <label for="email">Email</label>
+          </div>
+          <div class="mt-3 d-flex" *ngIf="changePswd">
+            <div class="d-flex flex-column form-floating ">
+              <input type="password" name="" id="password" formControlName="password" class="form-control"
+              placeholder="password" [ngClass]="{'is-invalid': this.profileForm.controls.password.invalid && (this.profileForm.controls.password.touched || this.profileForm.controls.password.dirty), 'is-valid' : this.profileForm.controls.password.valid}">
+              <label for="password">Password</label>
+              <span class="invalid-feedback" *ngIf="this.profileForm.controls.password.errors?.['required']">Password is required!</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <button type="button" class="btn btn-outline-danger ms-2" (click)="canclePassword()">cancle</button>
+            </div>
+          </div>
+          <div *ngIf="!changePswd" class="mt-3">
+            <button type="button" class="btn shadow-none border-0" (click)="showPassword()"><span
+                style="color: blue;">Want to change Password?</span></button>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" #closeModal
+          (click)="resetAllThings()">Close</button>
+        <button type="button" class="btn btn-primary" (click)="updateProfile()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>

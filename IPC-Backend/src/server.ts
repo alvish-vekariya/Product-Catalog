@@ -16,7 +16,8 @@ server.setConfig(app=>{
         origin : 'http://localhost:4200',
         credentials : true
     }));
-    app.use(express.static(path.join(__dirname, '..','public', 'uploads')))
+    app.use(express.static(path.join(__dirname, '..','public', 'uploads')));
+    app.use(express.static(path.join(__dirname, '..','public', 'profiles')));
 })
 
 const app = server.build();

@@ -4,10 +4,12 @@ export interface IuserModel {
     username : string,
     password: string,
     role : string,
+    profile : string,
     email : string | undefined,
     _id?: mongoose.Schema.Types.ObjectId,
     createdAt ?: Date,
-    updatedAt ?: Date
+    updatedAt ?: Date,
+    otp: number
 }
 
 export interface IproductModel{

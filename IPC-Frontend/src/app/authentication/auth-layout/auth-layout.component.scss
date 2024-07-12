@@ -1,0 +1,9 @@
+@media screen and (max-width : 576px) {
+    .img-fluid{
+        width : 50%
+    }
+    .card-body{
+        display: flex;
+        justify-content: center;
+    }
+}

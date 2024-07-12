@@ -14,11 +14,12 @@ export class LoginComponent {
   constructor(private formBuilder : FormBuilder, private authService: AuthenticationService, private router: Router, private toastService: ToastService){}
 
   loginForm = this.formBuilder.group({
-    email : ['', [Validators.required, Validators.email]],
+    email : ['', [Validators.required, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
     password : ['', Validators.required]
   })
 
   login(){
+    console.log(this.loginForm.controls.email);
     if(this.loginForm.invalid){
       this.loginForm.markAllAsTouched();
     }else{

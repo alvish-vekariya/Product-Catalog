@@ -1,17 +1,23 @@
 <div class="container-fluid">
     <div class="row d-flex justify-content-center">
-        <div class="col-auto min-vh-100 d-flex align-items-center">
-            <div class="card">
+        <div class="col-auto d-flex align-items-center">
+            <div class="card p-3">
                 <div class="card-body">
                     <h2 class="text-center">Login</h2>
                     <form action="" [formGroup]="loginForm" (submit)="login()">
                         <div class="form-floating mt-3">
-                            <input type="email" name="" id="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{'is-invalid':loginForm.controls.email.invalid && loginForm.controls.email.touched, 'is-valid': loginForm.controls.email.valid}">
+                            <input type="email" name="" id="email" class="form-control" placeholder="Email" formControlName="email" [ngClass]="{'is-invalid':loginForm.controls.email.invalid && (loginForm.controls.email.touched || loginForm.controls.email.dirty), 'is-valid': loginForm.controls.email.valid}">
                             <label for="email">Email</label>
+                            <span class="invalid-feedback" *ngIf="this.loginForm.controls.email.errors?.['required'] && this.loginForm.controls.email.invalid">Email is required!</span>
+                            <span class="invalid-feedback" *ngIf="this.loginForm.controls.email.errors?.['pattern'] && this.loginForm.controls.email.invalid">Invalid Email!</span>
                         </div>
                         <div class="form-floating mt-3">
-                            <input type="password" name="" id="password" class="form-control" placeholder="password" formControlName="password" [ngClass]="{'is-invalid':loginForm.controls.password.invalid && loginForm.controls.password.touched, 'is-valid': loginForm.controls.password.valid}">
+                            <input type="password" name="" id="password" class="form-control" placeholder="password" formControlName="password" [ngClass]="{'is-invalid':loginForm.controls.password.invalid && (loginForm.controls.password.touched || loginForm.controls.password.dirty), 'is-valid': loginForm.controls.password.valid}">
                             <label for="password">Password</label>
+                            <span class="invalid-feedback" *ngIf="this.loginForm.controls.password.errors?.['required'] && this.loginForm.controls.password.invalid">Password is required!</span>
+                        </div>
+                        <div class="mt-2">
+                            <a routerLink="forgot">Forgot password?</a>
                         </div>
                         <div class="mt-3">
                             <p>Don't have an account? <a routerLink="signup">Signup</a></p>

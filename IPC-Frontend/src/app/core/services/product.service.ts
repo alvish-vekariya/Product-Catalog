@@ -8,38 +8,37 @@ export class ProductService {
 
   constructor(private http : HttpClient) { }
 
-  private url = 'http://localhost:3000/product'
 
   addProduct(data: FormData){
-    return this.http.post(`${this.url}/addProduct`, data);
+    return this.http.post(`/product/addProduct`, data);
   }
 
   deleteProduct(id: string, image : string){
-    return this.http.delete(`${this.url}/deleteProduct?id=${id}&imagename=${image}`);
+    return this.http.delete(`/product/deleteProduct?id=${id}&imagename=${image}`);
   }
 
   editProduct(id: string, data : any, imagename: string){
-    return this.http.put(`${this.url}/updateProduct?id=${id}&imagename=${imagename}`, data)
+    return this.http.put(`/product/updateProduct?id=${id}&imagename=${imagename}`, data)
   }
 
   getProduct(id: string){
-    return this.http.get(`${this.url}/getProduct?id=${id}`);
+    return this.http.get(`/product/getProduct?id=${id}`);
   }
   
   getAllProducts(queryParams : any){
-    return this.http.get(`${this.url}/getAllProduct`, {params : queryParams});
+    return this.http.get(`/product/getAllProduct`, {params : queryParams});
   }
 
   search(search: string){
-    return this.http.get(`${this.url}/search?search=${search}`);
+    return this.http.get(`/product/search?search=${search}`);
   }
 
   getCategory(category : string){
-    return this.http.get(`${this.url}/getCategory?category=${category}`);
+    return this.http.get(`/product/getCategory?category=${category}`);
   }
 
   getProductCount(){
-    return this.http.get(`${this.url}/getProductCount`);
+    return this.http.get(`/product/getProductCount`);
   }
 
 }

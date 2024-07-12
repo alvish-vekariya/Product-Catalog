@@ -1,0 +1,29 @@
+.image-add{
+    margin-top: -2rem; 
+    background-color: white;
+    border : 1px solid black !important;
+    border-radius: 50%;
+}
+
+.profilePic{
+    border: 1px solid black;
+}
+
+@media only screen and (max-width: 600px) {
+    .logout{
+        display: none;
+    }
+
+    .logoutLink{
+        display: block
+    }
+}
+@media only screen and (min-width: 600px) {
+    .logout{
+        display: block;
+    }
+
+    .logoutLink{
+        display: none
+    }
+}

@@ -4,6 +4,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { AgGridAngular } from 'ag-grid-angular'
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     AgGridAngular,
-    RouterModule
+    RouterModule,
+    ReactiveFormsModule
   ],
   exports :[
     NavbarComponent,
