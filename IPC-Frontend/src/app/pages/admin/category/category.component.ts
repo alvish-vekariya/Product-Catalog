@@ -89,16 +89,20 @@ export class CategoryComponent {
   })
 
   addCategory(){
-    this.categoryService.addCategory(this.categoryForm.value).subscribe((data:any)=>{
-      if(data.status == true){
-        this.toastService.success(data.message);
-        this.categoryForm.reset();
-        this.closeButton.nativeElement.click();
-        this.setData();
-      }else{
-        this.toastService.error(data.message);
-      }
-    })
+    if(this.categoryForm.valid){
+      this.categoryService.addCategory(this.categoryForm.value).subscribe((data:any)=>{
+        if(data.status == true){
+          this.toastService.success(data.message);
+          this.categoryForm.reset();
+          this.closeButton.nativeElement.click();
+          this.setData();
+        }else{
+          this.toastService.error(data.message);
+        }
+      })
+    }else{
+      this.categoryForm.markAllAsTouched();
+    }
   }
 
   resetThings(){

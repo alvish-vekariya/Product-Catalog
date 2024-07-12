@@ -34,7 +34,7 @@
             style="width: 10rem; height: 10rem;">
           <button type="button" (click)="changeImage()" class="btn image-add shadow-none border-0"><i class="fa-solid fa-plus"></i></button>
         </div>
-        <input type="file" name="" id="" (change)="selectProfile($event)" style="display: none;" #fileInput>
+        <input type="file" name="" id="" (change)="selectProfile($event)" style="display: none;" #fileInput accept="image/jpg, image/jpeg, image/png">
         <form action="" [formGroup]="profileForm">
           <div class="form-floating mt-3">
             <input type="text" name="" id="username" formControlName="username" class="form-control"
