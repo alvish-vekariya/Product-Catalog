@@ -14,7 +14,9 @@ export class productService{
 
     async deleteProduct(id: string, imagename: string):Promise<object>{
     
-        fs.unlink(path.join(__dirname,'..','..','public','uploads',imagename),(err:any)=>{})
+        if(fs.existsSync(path.join(__dirname,'..','..','public','uploads',imagename))){
+          fs.unlink(path.join(__dirname,'..','..','public','uploads',imagename),(err:any)=>{})
+        }
         
         await productModel.findOneAndDelete({_id : id})
         return {status: true, message: 'product deleted!!'};
